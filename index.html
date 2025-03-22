@@ -1,0 +1,106 @@
+<?php
+include 'process.php'; 
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visa System</title>
+    <style>
+        body { 
+            font-family: Comic Sans MS; 
+            background-image:url(image1.jpeg);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 20px;
+        }
+        .formbox {
+            border: 5px solid red;
+            border-radius: 20px;
+            padding: 20px;
+            margin: 30px auto;
+            background: cyan;
+            width: 70%;
+            box-shadow: 0 0 15px purple;
+        }
+        input, select {
+            background: pink !important;
+            border: 3px solid blue;
+            padding: 8px;
+            font-size: 18px;
+            margin: 10px;
+        }
+        input[type="submit"] {
+            background: lightgreen !important;
+            color: black;
+            font-weight: bold;
+            padding: 12px 25px;
+            border-radius: 10px;
+        }
+        h1 {
+            color: red;
+            text-shadow: 2px 2px 4px black;
+            font-size: 45px;
+            text-decoration: underline overline;
+        }
+        h2 {
+            color: darkblue;
+            font-size: 30px;
+            margin: 15px;
+        }
+        .message {
+            font-size: 20px;
+            padding: 10px;
+            margin: 15px;
+            border: 2px dotted black;
+        }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Visa Form Application</h1>
+    <div class="formbox">
+        <h2>Check Visa Requirements</h2>
+        <form method="post">
+            <select name="visa_country" style="width:250px;">
+                <option value="">-- Select Country --</option>
+                <option value="USA" <?= ($visa_country == 'USA') ? 'selected' : '' ?>>🇺🇸 USA</option>
+                <option value="Canada" <?= ($visa_country == 'Canada') ? 'selected' : '' ?>>🇨🇦 Canada</option>
+                <option value="India" <?= ($visa_country == 'India') ? 'selected' : '' ?>>🇮🇳 India</option>
+                <option value="UK" <?= ($visa_country == 'UK') ? 'selected' : '' ?>>🇬🇧 UK</option>
+                <option value="AUS" <?= ($visa_country == 'AUS') ? 'selected' : '' ?>>🇦🇺 Australia</option>
+            </select><br>
+            <input type="submit" name="check_visa" value="Check Now!">
+        </form>
+        
+        <?php if ($visa_message): ?>
+            <div class="message"><?= $visa_message ?></div>
+        <?php endif; ?>
+    </div>
+    <div class="formbox">
+        <h2> Apply for Visa</h2>
+        <form method="post">
+            <b>Passport Number:</b><br>
+            <input type="text" name="passport" value="<?= $passport_value ?>" 
+                   placeholder="8-10 characters" style="width:300px;"><br><br>
+            
+            <b>Country:</b><br>
+            <select name="apply_country" style="width:250px;">
+                <option value="">-- Select Country --</option>
+                <option value="USA" <?= ($apply_country == 'USA') ? 'selected' : '' ?>>🇺🇸 USA</option>
+                <option value="Canada" <?= ($apply_country == 'Canada') ? 'selected' : '' ?>>🇨🇦 Canada</option>
+                <option value="India" <?= ($apply_country == 'India') ? 'selected' : '' ?>>🇮🇳 India</option>
+                <option value="UK" <?= ($apply_country == 'UK') ? 'selected' : '' ?>>🇬🇧 UK</option>
+                <option value="AUS" <?= ($apply_country == 'AUS') ? 'selected' : '' ?>>🇦🇺 Australia</option>
+            </select><br><br>
+            
+            <input type="submit" name="apply_visa" value="Submit Application!">
+        </form>
+
+        <?php if ($app_message): ?>
+            <div class="message <?= $message_type ?>"><?= $app_message ?></div>
+        <?php endif; ?>
+    </div>
+</body>
+</html>
